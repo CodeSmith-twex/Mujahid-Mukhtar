@@ -27,6 +27,7 @@ function initializeApp() {
     setupNavigation();
     setupScrollEffects();
     setupPortfolioFilter();
+    hideAllPortfolioItems();
     setupLightbox();
     setupContactForm();
     setupScrollAnimations();
@@ -122,6 +123,16 @@ function setupPortfolioFilter() {
 }
 
 /**
+ * Hide all portfolio items on initial load
+ */
+function hideAllPortfolioItems() {
+    portfolioItems.forEach(item => {
+        item.style.display = 'none';
+        item.style.opacity = '0';
+    });
+}
+
+/**
  * Filter portfolio items based on category
  * @param {string} category - The category to filter by
  */
@@ -129,7 +140,7 @@ function filterPortfolioItems(category) {
     portfolioItems.forEach(item => {
         const itemCategory = item.getAttribute('data-category');
         
-        if (category === 'all' || itemCategory === category) {
+        if (itemCategory === category) {
             item.style.display = 'block';
             item.classList.remove('hide');
             
